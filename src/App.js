@@ -9,12 +9,18 @@ const App = () => {
   const [userData, setUserData] = useState(null);
   const [error, setError] = useState('');
 
+
+  // const cchiUrl= 'https://api.stg-eclaims.waseel.com/beneficiaries/providers/'{{PROVIDERID}}/patientKey/{{PATIENTID}}/systemType/5
   // دالة للحصول على TOKEN و REFRESH_TOKEN
+  const getToken= 'https://api.stg-eclaims.waseel.com/oauth/authenticate'
   const fetchToken = async () => {
     try {
-      const response = await axios.post('https://api.example.com/get_token', {
-        client_id: clientId,
+      const response = await axios.post(getToken, {
+        // client_id: clientId,
+        "username": "hsm01",
+        "password": clientId
       });
+      console.log(response)
       setToken(response.data.token);
       setRefreshToken(response.data.refresh_token);
       setError('');
